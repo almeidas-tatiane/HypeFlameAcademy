@@ -15,11 +15,11 @@ public class BuscaSeleniumPuro {
 
     @Before
     public void iniciar(){
-        System.setProperty("webdriver.chrome.driver","C:\\Webdrivers\\ChromeDriver\\94\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","drivers/ChromeDriver/94/chromedriver.exe");
         driver = new ChromeDriver();
     }
 
-     @After
+    @After
     public void finalizar(){
         driver.quit();
 
@@ -30,8 +30,8 @@ public class BuscaSeleniumPuro {
         driver.get(url);
         driver.findElement(By.id("search")).sendKeys("Android" + Keys.ENTER);
         driver.findElement(By.className("btn-enroll")).click();
-        Assert.assertEquals(driver.findElement(By.className("cart-product-item")).getText(),"Android Development");
-        Assert.assertEquals(driver.findElement(By.className("cart-product-price")).getText(),"R$ 149,90");
+        Assert.assertEquals("Android Development", driver.findElement(By.className("cart-product-item")).getText());
+        Assert.assertEquals("R$ 149,90", driver.findElement(By.className("cart-product-price")).getText());
 
 
      }
