@@ -6,10 +6,10 @@ import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.File;
 
 public class Cursos {
 
@@ -22,10 +22,10 @@ public class Cursos {
         driver = new ChromeDriver();
     }
 
+
     @After
     public void finalizar(){
         driver.quit();
-
     }
 
     @Dado("^que eu estou na pagina do HypeFlame Academy$")
@@ -36,18 +36,18 @@ public class Cursos {
     @Quando("^busco por \"([^\"]*)\"$")
     public void busco_por(String arg1) throws Throwable {
         driver.findElement(By.id("search")).sendKeys(arg1 + Keys.ENTER);
-        driver.findElement(By.className("btn-enroll")).click();
+
     }
 
     @Quando("^clico no botao MATRICULE-SE$")
     public void clico_no_botão_MATRICULE_SE() throws Throwable {
-
+        driver.findElement(By.className("btn-enroll")).click();
     }
 
     @Entao("^verifico o nome do curso \"([^\"]*)\" e o valor \"([^\"]*)\"$")
     public void verifico_o_nome_do_curso_e_o_valor(String arg1, String arg2) throws Throwable {
-        Assert.assertEquals(arg1, driver.findElement(By.className("cart-product-item")).getText());
-        Assert.assertEquals(arg2, driver.findElement(By.className("cart-product-price")).getText());
+        Assert.assertEquals(driver.findElement(By.className("cart-product-item")).getText(), arg1);
+        Assert.assertEquals(driver.findElement(By.className("cart-product-price")).getText(), arg2);
     }
 
 

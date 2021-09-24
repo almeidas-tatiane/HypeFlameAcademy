@@ -8,7 +8,7 @@ package runners;
 @CucumberOptions(
         features =  "src\\test\\resources\\features\\Cursos.feature",
         glue = "steps",
-        plugin = "pretty",
+        plugin = {"pretty","html:resources/cucumber.html"},
         monochrome = true
 )
 public class Runners {
